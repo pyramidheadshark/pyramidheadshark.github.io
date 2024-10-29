@@ -25,7 +25,6 @@ concurrency:
 defaults:
   run:
     shell: bash
-    working-directory: pyramidheadshark-site
 
 jobs:
   # Build job
@@ -54,12 +53,16 @@ jobs:
       - name: Install Node.js dependencies
         run: "[[ -f package-lock.json || -f npm-shrinkwrap.json ]] && npm ci || true"
         
+      - name: List directory contents
+        run: ls -l
+
       - name: Build with Hugo
         env:
           HUGO_CACHEDIR: ${{ runner.temp }}/hugo_cache
           HUGO_ENVIRONMENT: production
         run: |
-          hugo \
+          cd pyramidheadshark-site
+          hugo \ 
             --minify \
             --baseURL "${{ steps.pages.outputs.base_url }}/"
 
