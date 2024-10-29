@@ -51,21 +51,22 @@ jobs:
         uses: actions/configure-pages@v5
 
       - name: Install Node.js dependencies
+        working-directory: pyramidheadshark-site
         run: "[[ -f package-lock.json || -f npm-shrinkwrap.json ]] && npm ci || true"
         
       - name: List directory contents
+        working-directory: pyramidheadshark-site
         run: ls -l
 
       - name: Build with Hugo
+        working-directory: pyramidheadshark-site
         env:
           HUGO_CACHEDIR: ${{ runner.temp }}/hugo_cache
           HUGO_ENVIRONMENT: production
         run: |
-          cd pyramidheadshark-site
           hugo \ 
             --minify \
             --baseURL "${{ steps.pages.outputs.base_url }}/"
-        working-directory: pyramidheadshark-site
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
