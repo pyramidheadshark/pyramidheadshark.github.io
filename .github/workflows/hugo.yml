@@ -53,10 +53,6 @@ jobs:
       - name: Install Node.js dependencies
         working-directory: pyramidheadshark-site
         run: "[[ -f package-lock.json || -f npm-shrinkwrap.json ]] && npm ci || true"
-        
-      - name: List directory contents
-        working-directory: pyramidheadshark-site
-        run: ls -l
 
       - name: Build with Hugo
         working-directory: pyramidheadshark-site
@@ -74,7 +70,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./public
+          path: pyramidheadshark-site/public
 
   # Deployment job
   deploy:
