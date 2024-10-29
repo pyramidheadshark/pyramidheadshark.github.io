@@ -1,0 +1,4 @@
+[submodule "pyramidheadshark-site"]
+	path = pyramidheadshark-site
+	url = https://github.com/pyramidheadshark/pyramidheadshark-site.git
+	branch = main
